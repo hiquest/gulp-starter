@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
-    "readline-sync": "^1.2.19"
+    "readline-sync": "^1.2.19",
+    "underscore": "^1.8.3"
   }
 }
