@@ -1,11 +1,10 @@
-var gulp = require('gulp');
-var babel = require('gulp-babel');
+var gulp   = require('gulp');
+var coffee = require('gulp-coffee');
 
 gulp.task('compile', function() {
-  return gulp.src('src/**/*.js')
-             .pipe(babel())
+  return gulp.src('src/**/*.coffee')
+             .pipe(coffee({bare: true}))
              .pipe(gulp.dest('build'));
-
 });
 
 gulp.task('default', ['compile']);
