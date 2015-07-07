@@ -11,28 +11,24 @@ fs.writeFile("./gulp-setup.json", prettified, function(err) {
     return console.log(err);
   }
 });
-// ************
 
 // create src dir
 
-let modules = ['gulp'];
+let deps = ['gulp'];
 
 let body = "";
 
-// Clean
+var modules = [
+   require('./modules/clean')
+];
 
-modules.push('del');
-
-body = body.concat(`
-gulp.task('clean', function(done) {
-  del(['./build'], done);
+modules.forEach(function(m) {
+  deps = deps.concat(m.dependencies);
+  body = body.concat(m.body);
 });
-`);
-
-// ... more tasks here
 
 let head = "";
-modules.forEach(function(m) {
+deps.forEach(function(m) {
   head = head.concat(`var ${m} = require('${m}');\n`);
 });
 
