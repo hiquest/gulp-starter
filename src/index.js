@@ -24,7 +24,7 @@ var modules = [
 
 modules.forEach(function(m) {
   deps = deps.concat(m.dependencies);
-  body = body.concat(m.body);
+  body = body.concat(m.body());
 });
 
 let head = "";
