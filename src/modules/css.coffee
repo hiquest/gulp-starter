@@ -4,7 +4,7 @@ module.exports =
   dependencies: []
   body: -> """
     gulp.task('styles', function() {
-      gulp.src('./src/styles/**/*.css')
-          .pipe(gulp.dest('./build/css/'));
+      return gulp.src('./src/styles/**/*.css')
+                 .pipe(gulp.dest('./build/css/'));
     });
   """

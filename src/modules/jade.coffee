@@ -4,7 +4,7 @@ module.exports =
   dependencies: ['gulp-jade']
   body: -> """
   gulp.task('markup', function() {
-    gulp.src('./src/*.jade')
+    return gulp.src('./src/*.jade')
         .pipe(jade())
         .pipe(gulp.dest('./dist/'));
   });
