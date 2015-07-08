@@ -2,6 +2,7 @@
 fs            = require('fs')
 _             = require('underscore')
 questionnaire = require('./questionnaire')
+spawn = require('child_process').spawn
 
 # create directory tree
 fs.mkdirSync('./src') unless fs.existsSync('./src')
@@ -16,6 +17,7 @@ modules = allModules.map (s) -> require "./modules/#{s}"
 sections = ['markup', 'lang', 'styles']
 
 # Ask user, what does he want
+console.log "Please select options you want to use in your project..."
 options = questionnaire(modules, sections)
 
 # Figuring out modules that need to be applied
@@ -43,3 +45,8 @@ deps.forEach (m) ->
 
 out = "#{head}\n#{body}"
 fs.writeFile "./gulpfile.js", out, (err) -> console.log(err) if err
+
+# Now installing dependencies
+console.log("\n\nInstalling dependecies...")
+options = ['install', '--save-dev'].concat(deps)
+child = spawn "npm", options, { stdio: 'inherit' }
