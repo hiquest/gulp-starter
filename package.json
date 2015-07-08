@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Kickstart you Gulp project by answering several easy questions.",
   "main": "index.js",
   "bin": {
