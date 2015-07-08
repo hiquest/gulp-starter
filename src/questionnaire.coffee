@@ -1,8 +1,8 @@
 readLine = require('readline-sync')
 _        = require('underscore')
 
-buildQuestions = (modules) ->
-  ['markup', 'lang', 'styles'].map (type) ->
+buildQuestions = (modules, sections) ->
+  sections.map (type) ->
     byType = _.filter(modules, (m) -> m.type == type)
     question = _.map(byType, (m, ind) -> "(#{ind+1}) #{m.name}")
                 .join(" or ") + '? '
@@ -22,8 +22,8 @@ fire = (q) ->
     return fire(q)
   [q.name, out]
 
-ask = (modules) ->
-  questions = buildQuestions(modules)
+ask = (modules, sections) ->
+  questions = buildQuestions(modules, sections)
   options = questions.map (q) -> fire(q)
   _.object(options)
 
