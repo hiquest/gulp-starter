@@ -1,10 +1,10 @@
 {
   "name": "gulp-starter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Kickstart you Gulp project by answering several easy questions.",
   "main": "index.js",
   "bin": {
-    "gulp-starter": "build/index.js"
+    "gulp-starter": "dist/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
