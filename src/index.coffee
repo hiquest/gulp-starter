@@ -16,12 +16,17 @@ body = ""
 applyModule = (m) ->
   deps = deps.concat(m.dependencies)
   body = body.concat(m.body())
+  body = body.concat("\n")
 
 modules.forEach(applyModule)
 
 head = ""
 deps.forEach (m) ->
-  head = head.concat("var #{m} = require('#{m}');\n")
+  name = if m.indexOf('gulp-') == 0
+           m.replace(/gulp-/, '')
+         else
+           m
+  head = head.concat("var #{name} = require('#{m}');\n")
 
 out = "#{head}\n#{body}"
 console.log(out)
