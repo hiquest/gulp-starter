@@ -1,13 +1,14 @@
 {
-  "name": "unnames-es6-project",
-  "version": "1.0.0",
-  "description": "",
+  "name": "gulp-starter",
+  "version": "0.1.0",
+  "description": "Kickstart you Gulp project by answering several easy questions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yanis",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": "hiquest/gulp-starter",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1"
@@ -15,5 +16,18 @@
   "dependencies": {
     "readline-sync": "^1.2.19",
     "underscore": "^1.8.3"
-  }
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "starter",
+    "scaffold",
+    "codegen",
+    "javascript",
+    "ecmascript",
+    "language",
+    "es5",
+    "es6",
+    "coffeescript"
+  ]
 }
