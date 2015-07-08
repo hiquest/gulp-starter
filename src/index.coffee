@@ -10,7 +10,7 @@ fs.mkdirSync('./src/script') unless fs.existsSync('./src/script')
 fs.mkdirSync('./src/styles') unless fs.existsSync('./src/styles')
 
 # All modules, that we have
-allModules = ['clean', 'html', 'jade', 'css', 'scss', 'sass', 'coffee', 'es6', 'build', 'serve', 'default']
+allModules = ['clean', 'html', 'jade', 'css', 'scss', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
 modules = allModules.map (s) -> require "./modules/#{s}"
 
 # Base sections

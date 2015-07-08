@@ -8,7 +8,7 @@ Features
 - Proper directory tree
 - html or jade
 - es5, es6 or coffeescript
-- css, scss or sass
+- css, less or sass
 - watch & rebuild on change
 - serve & livereload (you'd need a browser plugin)
 
