@@ -1,11 +1,9 @@
 questionnaire = require('./questionnaire')
 fs = require('fs')
 
-modules = [
-  require('./modules/clean')
-]
+modules = ['clean', 'html', 'jade', 'css', 'scss', 'sass', 'coffee', 'es6'].map (s) -> require "./modules/#{s}"
 
-options = questionnaire()
+options = questionnaire(modules)
 
 prettified = JSON.stringify(options, null, 2)
 

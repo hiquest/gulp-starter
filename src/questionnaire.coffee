@@ -1,23 +1,17 @@
 readLine = require('readline-sync')
 _        = require('underscore')
 
-questions = [
-  {
-    name: 'markup',
-    q: '(1) plain html or (2) slim? ',
-    options: ['html', 'slim']
-  },
-  {
-    name: 'lang',
-    q: '(1) ES6 or (2) CoffeeScript? ',
-    options: ['es6', 'coffee']
-  },
-  {
-    name: 'styles',
-    q: '(1) CSS or (2) SASS or (3) SCSS? ',
-    options: ['css', 'sass', 'scss']
-  }
-]
+buildQuestions = (modules) ->
+  ['markup', 'lang', 'styles'].map (type) ->
+    byType = _.filter(modules, (m) -> m.type == type)
+    question = _.map(byType, (m, ind) -> "(#{ind+1}) #{m.name}")
+                .join(" or ") + '? '
+    options = _.map(byType, 'name')
+    {
+      name: type,
+      q: question,
+      options: options
+    }
 
 fire = (q) ->
   answer = readLine.question(q.q)
@@ -28,7 +22,8 @@ fire = (q) ->
     return fire(q)
   [q.name, out]
 
-ask = ->
+ask = (modules) ->
+  questions = buildQuestions(modules)
   options = questions.map (q) -> fire(q)
   _.object(options)
 
