@@ -3,6 +3,11 @@ fs            = require('fs')
 _             = require('underscore')
 questionnaire = require('./questionnaire')
 
+# create directory tree
+fs.mkdirSync('./src') unless fs.existsSync('./src')
+fs.mkdirSync('./src/script') unless fs.existsSync('./src/script')
+fs.mkdirSync('./src/styles') unless fs.existsSync('./src/styles')
+
 # All modules, that we have
 allModules = ['clean', 'html', 'jade', 'css', 'scss', 'sass', 'coffee', 'es6']
 modules = allModules.map (s) -> require "./modules/#{s}"
@@ -12,10 +17,6 @@ sections = ['markup', 'lang', 'styles']
 
 # Ask user, what does he want
 options = questionnaire(modules, sections)
-
-# Write To File The Answers? maybe we don't need this
-prettified = JSON.stringify(options, null, 2)
-fs.writeFile "./gulp-setup.json", prettified, (err) -> console.log(err) if err
 
 # Figuring out modules that need to be applied
 namesToApply = ['clean']
@@ -30,7 +31,6 @@ applyModule = (m) ->
   deps = deps.concat(m.dependencies)
   body = body.concat(m.body() + "\n\n")
 
-console.log "modules to apply: #{modulesToApply}"
 modulesToApply.forEach(applyModule)
 
 head = ""
@@ -42,5 +42,4 @@ deps.forEach (m) ->
   head = head.concat("var #{name} = require('#{m}');\n")
 
 out = "#{head}\n#{body}"
-console.log("\n")
-console.log(out)
+fs.writeFile "./gulpfile.js", out, (err) -> console.log(err) if err

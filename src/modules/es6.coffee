@@ -4,8 +4,8 @@ module.exports =
   dependencies: ['gulp-babel']
   body: -> """
     gulp.task('compile', function() {
-      return gulp.src('src/**/*.js')
+      return gulp.src('src/script/**/*.js')
                  .pipe(babel())
-                 .pipe(gulp.dest('build'));
+                 .pipe(gulp.dest('./build/js'));
     });
   """

@@ -4,8 +4,8 @@ module.exports =
   dependencies: ['gulp-coffee']
   body: -> """
     gulp.task('compile', function() {
-      return gulp.src('src/**/*.coffee')
+      return gulp.src('src/script/**/*.coffee')
                  .pipe(coffee({bare: true}))
-                 .pipe(gulp.dest('build'));
+                 .pipe(gulp.dest('./build/js'));
     });
   """
