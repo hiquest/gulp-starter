@@ -1,17 +1,17 @@
 # Dependencies
 fs            = require('fs')
 _             = require('underscore')
+spawn         = require('child_process').spawn
+
 questionnaire = require('./questionnaire')
-spawn = require('child_process').spawn
+# All modules, that we have
+allModules = ['clean', 'html', 'jade', 'css', 'sass', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
+modules = allModules.map (s) -> require "./modules/#{s}"
 
 # create directory tree
 fs.mkdirSync('./src') unless fs.existsSync('./src')
 fs.mkdirSync('./src/script') unless fs.existsSync('./src/script')
 fs.mkdirSync('./src/styles') unless fs.existsSync('./src/styles')
-
-# All modules, that we have
-allModules = ['clean', 'html', 'jade', 'css', 'scss', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
-modules = allModules.map (s) -> require "./modules/#{s}"
 
 # Base sections
 sections = ['markup', 'lang', 'styles']

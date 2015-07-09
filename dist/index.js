@@ -6,9 +6,15 @@ fs = require('fs');
 
 _ = require('underscore');
 
+spawn = require('child_process').spawn;
+
 questionnaire = require('./questionnaire');
 
-spawn = require('child_process').spawn;
+allModules = ['clean', 'html', 'jade', 'css', 'sass', 'less', 'coffee', 'es6', 'build', 'serve', 'default'];
+
+modules = allModules.map(function(s) {
+  return require("./modules/" + s);
+});
 
 if (!fs.existsSync('./src')) {
   fs.mkdirSync('./src');
@@ -21,12 +27,6 @@ if (!fs.existsSync('./src/script')) {
 if (!fs.existsSync('./src/styles')) {
   fs.mkdirSync('./src/styles');
 }
-
-allModules = ['clean', 'html', 'jade', 'css', 'scss', 'less', 'coffee', 'es6', 'build', 'serve', 'default'];
-
-modules = allModules.map(function(s) {
-  return require("./modules/" + s);
-});
 
 sections = ['markup', 'lang', 'styles'];
 

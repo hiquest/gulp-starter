@@ -1,7 +1,7 @@
 module.exports =
   name: 'less'
   type: 'styles'
-  dependencies: []
+  dependencies: ['gulp-less']
   body: -> """
     gulp.task('styles', function () {
       return gulp.src('./css/styles/**/*.less')

@@ -1,7 +1,7 @@
 module.exports =
   name: 'sass'
   type: 'styles'
-  dependencies: []
+  dependencies: ['gulp-sass']
   body: -> """
     gulp.task('styles', function () {
       return gulp.src('./src/styles/**/*.scss')
