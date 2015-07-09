@@ -3,6 +3,15 @@ Kickstart your Gulp project by answering several easy questions.
 
 ![](https://dl.dropboxusercontent.com/u/1995551/misc/gulp-starter.png)
 
+Quick Start
+-----
+```bash
+npm install -g gulp-starter
+mkdir my-project && cd $_
+npm init # optional
+gulp-starter
+```
+
 Features
 -----
 - Proper directory tree
