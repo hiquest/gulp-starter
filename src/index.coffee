@@ -20,12 +20,9 @@ sections = ['markup', 'lang', 'styles']
 buildQuestions = (modules, sections) ->
   sections.map (type) ->
     byType = _.filter(modules, (m) -> m.type == type)
-    question = _.map(byType, (m, ind) -> "(#{ind+1}) #{m.name}")
-                .join(" or ") + '? '
     options = _.map(byType, 'name')
     {
-      name: type,
-      q: question,
+      id: type,
       options: options
     }
 
