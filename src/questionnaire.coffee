@@ -1,18 +1,6 @@
 readLine = require('readline-sync')
 _        = require('underscore')
 
-buildQuestions = (modules, sections) ->
-  sections.map (type) ->
-    byType = _.filter(modules, (m) -> m.type == type)
-    question = _.map(byType, (m, ind) -> "(#{ind+1}) #{m.name}")
-                .join(" or ") + '? '
-    options = _.map(byType, 'name')
-    {
-      name: type,
-      q: question,
-      options: options
-    }
-
 fire = (q) ->
   answer = readLine.question(q.q)
   i = parseInt(answer, 10)
@@ -22,8 +10,7 @@ fire = (q) ->
     return fire(q)
   [q.name, out]
 
-ask = (modules, sections) ->
-  questions = buildQuestions(modules, sections)
+ask = (questions) ->
   options = questions.map (q) -> fire(q)
   _.object(options)
 

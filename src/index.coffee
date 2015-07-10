@@ -17,8 +17,22 @@ fs.mkdirSync('./src/styles') unless fs.existsSync('./src/styles')
 sections = ['markup', 'lang', 'styles']
 
 # Ask user, what does he want
+buildQuestions = (modules, sections) ->
+  sections.map (type) ->
+    byType = _.filter(modules, (m) -> m.type == type)
+    question = _.map(byType, (m, ind) -> "(#{ind+1}) #{m.name}")
+                .join(" or ") + '? '
+    options = _.map(byType, 'name')
+    {
+      name: type,
+      q: question,
+      options: options
+    }
+
+questions = buildQuestions(modules, sections)
+
 console.log "Please select options you want to use in your project..."
-options = questionnaire(modules, sections)
+options = questionnaire(questions)
 
 # Figuring out modules that need to be applied
 namesToApply = ['clean']
