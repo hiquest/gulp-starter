@@ -28,13 +28,13 @@ console.log "Please select options you want to use in your project..."
 answers = questionnaire(questions)
 
 # Figuring out modules that need to be applied
-namesToApply = ['clean']
-sections.forEach (s) -> namesToApply.push(answers[s])
-namesToApply.push('build')
-namesToApply.push('serve')
-namesToApply.push('default')
+before = ['clean']
+middle = sections.map (s) -> answers[s]
+after = ['build', 'serve', 'default']
 
-modulesToApply = _.map namesToApply, (id) -> _.find(modules, id: id)
+ids = _.uinon(before, middle, after)
+
+modulesToApply = _.map ids, (id) -> _.find(modules, id: id)
 
 # Now let every module add dependecies and code snippets
 deps = ['gulp']
