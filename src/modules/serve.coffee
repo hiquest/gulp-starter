@@ -1,5 +1,5 @@
 module.exports =
-  name: 'serve'
+  id: 'serve'
   dependencies: ['gulp-connect', 'gulp-watch']
   body: -> """
     gulp.task('serve', ['build'], function() {

@@ -1,5 +1,5 @@
 module.exports =
-  name: 'default'
+  id: 'default'
   dependencies: []
   body: -> """
     gulp.task('default', ['serve']);

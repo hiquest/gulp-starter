@@ -1,19 +1,19 @@
 readLine = require('readline-sync')
 _        = require('underscore')
 
-fire = (q) ->
-  text = _.map(q.options, (option, ind) -> "(#{ind+1}) #{option}")
+ask = (id, options) ->
+  text = _.map(options, (option, ind) -> "(#{ind+1}) #{option}")
           .join(" or ") + '? '
   answer = readLine.question(text)
   i = parseInt(answer, 10)
-  out = q.options[i - 1]
+  out = options[i - 1]
   unless out
     console.log('Unsupported answer')
-    return fire(q)
-  [q.id, out]
+    return ask(id, options)
+  [id, out]
 
-ask = (questions) ->
-  options = questions.map (q) -> fire(q)
-  _.object(options)
+questionnaire = (questions) ->
+  answers = questions.map (q) -> ask(q.id, q.options)
+  _.object(answers)
 
-module.exports = ask
+module.exports = questionnaire

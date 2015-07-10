@@ -1,5 +1,5 @@
 module.exports =
-  name: 'clean'
+  id: 'clean'
   dependencies: ['del']
   body: -> """
     gulp.task('clean', function(done) {

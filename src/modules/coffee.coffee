@@ -1,6 +1,6 @@
 module.exports =
-  name: 'coffee'
-  type: 'lang'
+  id: 'coffee'
+  section: 'lang'
   dependencies: ['gulp-coffee']
   body: -> """
     gulp.task('compile', function() {

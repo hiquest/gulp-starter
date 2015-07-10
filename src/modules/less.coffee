@@ -1,6 +1,6 @@
 module.exports =
-  name: 'less'
-  type: 'styles'
+  id: 'less'
+  section: 'styles'
   dependencies: ['gulp-less']
   body: -> """
     gulp.task('styles', function () {

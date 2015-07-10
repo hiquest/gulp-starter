@@ -1,6 +1,6 @@
 module.exports =
-  name: 'jade'
-  type: 'markup'
+  id: 'jade'
+  section: 'markup'
   dependencies: ['gulp-jade']
   body: -> """
   gulp.task('markup', function() {

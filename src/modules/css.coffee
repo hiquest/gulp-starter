@@ -1,6 +1,6 @@
 module.exports =
-  name: 'css'
-  type: 'styles'
+  id: 'css'
+  section: 'styles'
   dependencies: []
   body: -> """
     gulp.task('styles', function() {

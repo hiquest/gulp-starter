@@ -1,6 +1,6 @@
 module.exports =
-  name: 'html'
-  type: 'markup'
+  id: 'html'
+  section: 'markup'
   dependencies: []
   body: -> """
     gulp.task('markup', function() {

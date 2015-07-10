@@ -1,5 +1,5 @@
 module.exports =
-  name: 'build'
+  id: 'build'
   dependencies: ['run-sequence']
   body: -> """
     gulp.task('build', function(done) {

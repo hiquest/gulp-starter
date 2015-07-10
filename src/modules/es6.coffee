@@ -1,6 +1,6 @@
 module.exports =
-  name: 'es6'
-  type: 'lang'
+  id: 'es6'
+  section: 'lang'
   dependencies: ['gulp-babel']
   body: -> """
     gulp.task('compile', function() {

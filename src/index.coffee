@@ -17,28 +17,24 @@ fs.mkdirSync('./src/styles') unless fs.existsSync('./src/styles')
 sections = ['markup', 'lang', 'styles']
 
 # Ask user, what does he want
-buildQuestions = (modules, sections) ->
-  sections.map (type) ->
-    byType = _.filter(modules, (m) -> m.type == type)
-    options = _.map(byType, 'name')
-    {
-      id: type,
-      options: options
-    }
-
-questions = buildQuestions(modules, sections)
+questions = sections.map (section) ->
+  id: section
+  options: _.chain(modules)
+            .filter(section: section)
+            .map('id')
+            .value()
 
 console.log "Please select options you want to use in your project..."
-options = questionnaire(questions)
+answers = questionnaire(questions)
 
 # Figuring out modules that need to be applied
 namesToApply = ['clean']
-sections.forEach (s) -> namesToApply.push(options[s])
+sections.forEach (s) -> namesToApply.push(answers[s])
 namesToApply.push('build')
 namesToApply.push('serve')
 namesToApply.push('default')
 
-modulesToApply = _.map namesToApply, (name) -> _.find(modules, name: name)
+modulesToApply = _.map namesToApply, (id) -> _.find(modules, id: id)
 
 # Now let every module add dependecies and code snippets
 deps = ['gulp']
