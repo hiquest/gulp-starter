@@ -1,12 +1,24 @@
+#!/usr/bin/env node
+
 # Dependencies
 fs            = require('fs')
 _             = require('underscore')
 questionnaire = require('questionnaire')
 spawn         = require('child_process').spawn
 
-# All modules, that we have
-moduleNames = ['clean', 'html', 'jade', 'css', 'sass', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
-modules = moduleNames.map (s) -> require "./modules/#{s}"
+clean         = require('./modules/clean')
+html          = require('./modules/html')
+jade          = require('./modules/jade')
+css           = require('./modules/css')
+sass          = require('./modules/sass')
+less          = require('./modules/less')
+coffee        = require('./modules/coffee')
+es6           = require('./modules/es6')
+build         = require('./modules/build')
+serve         = require('./modules/serve')
+default_      = require('./modules/default')
+
+modules = [clean, html, jade, css, sasss, less, coffee, es6, build, serve, default_]
 
 # create directory tree
 fs.mkdirSync('./src') unless fs.existsSync('./src')
@@ -33,7 +45,7 @@ middle = sections.map (s) -> answers[s]
 after = ['build', 'serve', 'default']
 
 ids = _.union(before, middle, after)
-modulesToApply = _.map (id) -> _.find(modules, id: id)
+modulesToApply = _.map ids, (id) -> _.find(modules, id: id)
 
 # Now let every module add dependecies and code snippets
 deps = ['gulp']
