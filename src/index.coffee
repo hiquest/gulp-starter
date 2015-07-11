@@ -1,12 +1,12 @@
 # Dependencies
 fs            = require('fs')
 _             = require('underscore')
+questionnaire = require('questionnaire')
 spawn         = require('child_process').spawn
 
-questionnaire = require('./questionnaire')
 # All modules, that we have
-allModules = ['clean', 'html', 'jade', 'css', 'sass', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
-modules = allModules.map (s) -> require "./modules/#{s}"
+moduleNames = ['clean', 'html', 'jade', 'css', 'sass', 'less', 'coffee', 'es6', 'build', 'serve', 'default']
+modules = moduleNames.map (s) -> require "./modules/#{s}"
 
 # create directory tree
 fs.mkdirSync('./src') unless fs.existsSync('./src')
@@ -32,9 +32,8 @@ before = ['clean']
 middle = sections.map (s) -> answers[s]
 after = ['build', 'serve', 'default']
 
-ids = _.uinon(before, middle, after)
-
-modulesToApply = _.map ids, (id) -> _.find(modules, id: id)
+ids = _.union(before, middle, after)
+modulesToApply = _.map (id) -> _.find(modules, id: id)
 
 # Now let every module add dependecies and code snippets
 deps = ['gulp']
