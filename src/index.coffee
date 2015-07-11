@@ -18,7 +18,7 @@ build         = require('./modules/build')
 serve         = require('./modules/serve')
 default_      = require('./modules/default')
 
-modules = [clean, html, jade, css, sasss, less, coffee, es6, build, serve, default_]
+modules = [clean, html, jade, css, sass, less, coffee, es6, build, serve, default_]
 
 # create directory tree
 fs.mkdirSync('./src') unless fs.existsSync('./src')
