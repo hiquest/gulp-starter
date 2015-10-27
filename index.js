@@ -86,7 +86,7 @@ module.exports = {
   section: 'markup',
   dependencies: ['gulp-jade'],
   body: function() {
-    return "gulp.task('markup', function() {\n  return gulp.src('./src/*.jade')\n      .pipe(jade())\n      .pipe(gulp.dest('./dist/'));\n});";
+    return "gulp.task('markup', function() {\n  return gulp.src('./src/*.jade')\n      .pipe(jade())\n      .pipe(gulp.dest('./build/'));\n});";
   }
 };
 

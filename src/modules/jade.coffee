@@ -6,6 +6,6 @@ module.exports =
   gulp.task('markup', function() {
     return gulp.src('./src/*.jade')
         .pipe(jade())
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./build/'));
   });
   """
