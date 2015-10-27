@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
   id: 'build',
@@ -129,7 +127,7 @@ module.exports = {
 
 
 },{}],12:[function(require,module,exports){
-var _, after, answers, applyModule, before, body, build, child, clean, coffee, css, default_, deps, es6, fs, head, html, ids, jade, less, middle, modules, modulesToApply, options, out, questionnaire, questions, sass, sections, serve, spawn;
+var _, after, answers, applyModule, before, body, build, child, clean, coffee, css, default_, deps, es6, fs, head, html, ids, jade, less, middle, modules, modulesToApply, options, out, questionnaire, questions, sass, sections, serve, spawnSync;
 
 fs = require('fs');
 
@@ -137,7 +135,7 @@ _ = require('underscore');
 
 questionnaire = require('questionnaire');
 
-spawn = require('child_process').spawn;
+spawnSync = require('child_process').spawnSync;
 
 clean = require('./modules/clean');
 
@@ -234,11 +232,23 @@ fs.writeFile("./gulpfile.js", out, function(err) {
   }
 });
 
-console.log("\n\nInstalling dependecies...");
+console.log("\n\n$ npm init --force");
+
+child = spawnSync("npm", ['init', '--force'], {
+  stdio: 'inherit'
+});
+
+console.log("\n\n$ npm install --save-dev <dependencies>");
 
 options = ['install', '--save-dev'].concat(deps);
 
-child = spawn("npm", options, {
+child = spawnSync("npm", options, {
+  stdio: 'inherit'
+});
+
+console.log("\n\n$ git init");
+
+child = spawnSync("git", ['init'], {
   stdio: 'inherit'
 });
 

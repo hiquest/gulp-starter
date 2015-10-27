@@ -4,7 +4,7 @@
 fs            = require('fs')
 _             = require('underscore')
 questionnaire = require('questionnaire')
-spawn         = require('child_process').spawn
+spawnSync     = require('child_process').spawnSync
 
 clean         = require('./modules/clean')
 html          = require('./modules/html')
@@ -69,7 +69,12 @@ deps.forEach (m) ->
 out = "#{head}\n#{body}"
 fs.writeFile "./gulpfile.js", out, (err) -> console.log(err) if err
 
-# Now installing dependencies
-console.log("\n\nInstalling dependecies...")
+console.log("\n\n$ npm init --force")
+child = spawnSync "npm", ['init', '--force'], { stdio: 'inherit' }
+
+console.log("\n\n$ npm install --save-dev <dependencies>")
 options = ['install', '--save-dev'].concat(deps)
-child = spawn "npm", options, { stdio: 'inherit' }
+child = spawnSync "npm", options, { stdio: 'inherit' }
+
+console.log("\n\n$ git init")
+child = spawnSync "git", ['init'], { stdio: 'inherit' }
